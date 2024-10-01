@@ -5,6 +5,7 @@ import com.echocano.seek.challenge.application.service.ICandidateService;
 import com.echocano.seek.challenge.domain.Candidate;
 import com.echocano.seek.challenge.domain.exceptions.CandidateNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
  */
 
 @RequiredArgsConstructor
+@Service
 public class CandidateService implements ICandidateService {
 
     private final CandidateRepository repository;
