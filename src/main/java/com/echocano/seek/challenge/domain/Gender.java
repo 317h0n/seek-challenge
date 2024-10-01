@@ -15,9 +15,11 @@ import java.util.stream.Stream;
  */
 @Getter
 public enum Gender {
-    MALE("M", "Male"), FEMALE("F", "Female");
+    MALE("M", "Male"),
+    FEMALE("F", "Female");
 
-    private String code, description;
+    private final String code;
+    private final String description;
 
     private Gender(String code, String description) {
         this.code = code;

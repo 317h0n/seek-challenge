@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 /**
  * ICandidateController
  * <p>
@@ -30,26 +32,26 @@ public interface ICandidateController {
     @Operation(summary = "Get All Candidates", description = "Retrieve all registered candidates")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse> doOnGetCandidates();
+    ResponseEntity<BaseResponse<List<CandidateDto>>> doOnGetCandidates();
 
     @Operation(summary = "Get Candidate", description = "Retrieve a specific candidate by uuid")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse> doOnGetCandidate(
+    ResponseEntity<BaseResponse<CandidateDto>> doOnGetCandidate(
             @Parameter(name = "uuid", description = "Candidate's uuid", required = true)
             String uuid);
 
     @Operation(summary = "Create a Candidate", description = "Create a new candidate")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse> doOnCreateCandidate(
+    ResponseEntity<BaseResponse<CandidateDto>> doOnCreateCandidate(
             @Parameter(name = "candidate", description = "Candidate's information", required = true)
             CandidateDto candidate);
 
     @Operation(summary = "Update a Candidate", description = "Update a candidate's information")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse> doOnUpdateCandidate(
+    ResponseEntity<BaseResponse<CandidateDto>> doOnUpdateCandidate(
             @Parameter(name = "uuid", description = "Candidate's uuid", required = true)
             String uuid,
             @Parameter(name = "candidate", description = "Candidate's information", required = true)
@@ -58,7 +60,7 @@ public interface ICandidateController {
     @Operation(summary = "Delete Candidate", description = "Delete a specific candidate by uuid")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse> doOnDeleteCandidate(
+    ResponseEntity<Void> doOnDeleteCandidate(
             @Parameter(name = "uuid", description = "Candidate's uuid", required = true)
             String uuid);
 }

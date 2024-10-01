@@ -6,6 +6,8 @@ import com.echocano.seek.challenge.domain.Candidate;
 import com.echocano.seek.challenge.domain.exceptions.CandidateNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 /**
  * CandidateService
  * <p>
@@ -36,6 +38,11 @@ public class CandidateService implements ICandidateService {
             throw new CandidateNotFoundException(uuid);
         }
         return candidate;
+    }
+
+    @Override
+    public List<Candidate> getCandidates() {
+        return repository.findAll();
     }
 
     @Override

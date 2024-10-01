@@ -2,6 +2,8 @@ package com.echocano.seek.challenge.application.service;
 
 import com.echocano.seek.challenge.domain.Candidate;
 
+import java.util.List;
+
 /**
  * ICandidateService
  * <p>
@@ -14,6 +16,7 @@ import com.echocano.seek.challenge.domain.Candidate;
 public interface ICandidateService {
     Candidate getCandidate(Long id);
     Candidate getCandidate(String uuid);
+    List<Candidate> getCandidates();
     Candidate createCandidate(Candidate candidate);
     Candidate updateCandidate(Candidate candidate);
     void deleteCandidate(String uuid);

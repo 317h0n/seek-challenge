@@ -10,6 +10,8 @@ import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.NullValueMappingStrategy;
 
+import java.util.List;
+
 /**
  * ICandidateDtoMapper
  * <p>
@@ -24,7 +26,9 @@ import org.mapstruct.NullValueMappingStrategy;
         nullValueCheckStrategy = NullValueCheckStrategy.ON_IMPLICIT_CONVERSION)
 public interface ICandidateDtoMapper {
 
-    @Mapping(target = "gender", expression = "java(domain.gender() ? 1L : 0L)")
+    List<CandidateDto> toDto(List<Candidate> domains);
+
+    @Mapping(target = "gender", source = "gender", qualifiedByName = "mapGenderToDto")
     CandidateDto toDto(Candidate domain);
 
     @Mapping(target = "gender", source = "gender", qualifiedByName = "mapGenderToDomain")
