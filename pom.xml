@@ -44,6 +44,7 @@
     </build>
     <properties>
         <java.version>17</java.version>
+        <dependency-mapstruct-version>1.5.3.Final</dependency-mapstruct-version>
     </properties>
     <dependencies>
         <dependency>
@@ -70,6 +71,12 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${dependency-mapstruct-version}</version>
+        </dependency>
+        <!--Test dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

@@ -37,6 +37,8 @@ import java.math.BigDecimal;
 @Table(name = "candidates")
 public class CandidateEntity implements Serializable {
 
+    private static final long serialVersionUID = -8249254517172832722L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
