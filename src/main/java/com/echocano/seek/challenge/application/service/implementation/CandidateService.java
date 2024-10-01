@@ -23,15 +23,6 @@ public class CandidateService implements ICandidateService {
     private final CandidateRepository repository;
 
     @Override
-    public Candidate getCandidate(Long id) {
-        Candidate candidate = repository.findById(id);
-        if(candidate == null) {
-            throw new CandidateNotFoundException(id);
-        }
-        return candidate;
-    }
-
-    @Override
     public Candidate getCandidate(String uuid) {
         Candidate candidate = repository.findByUuid(uuid);
         if(candidate == null) {

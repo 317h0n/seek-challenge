@@ -1,14 +1,18 @@
 package com.echocano.seek.challenge.infrastructure.spring.rest.resources.implementation;
 
 import com.echocano.seek.challenge.application.service.ICandidateService;
+import com.echocano.seek.challenge.domain.exceptions.CandidateExistException;
+import com.echocano.seek.challenge.domain.exceptions.CandidateNotFoundException;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.BaseResponse;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.CandidateDto;
+import com.echocano.seek.challenge.infrastructure.spring.rest.dto.Error;
 import com.echocano.seek.challenge.infrastructure.spring.rest.mapper.ICandidateDtoMapper;
 import com.echocano.seek.challenge.infrastructure.spring.rest.resources.ICandidateController;
-import com.echocano.seek.challenge.infrastructure.spring.rest.resources.ResponseCode;
+import com.echocano.seek.challenge.infrastructure.spring.rest.resources.enums.ResponseCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -44,7 +49,7 @@ public class CandidateController implements ICandidateController {
     private final ICandidateDtoMapper mapper;
 
     @Override
-    @GetMapping(value = "/", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<List<CandidateDto>>> doOnGetCandidates() {
         List<CandidateDto> candidates = mapper.toDto(service.getCandidates());
         BaseResponse<List<CandidateDto>> response = new BaseResponse<>();
@@ -55,27 +60,55 @@ public class CandidateController implements ICandidateController {
     }
 
     @Override
-    @GetMapping(value = "/" + UUID_PARAMETER, produces = "application/json; charset=UTF-8")
-    public ResponseEntity<BaseResponse<CandidateDto>> doOnGetCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid) {
-        return null;
+    @GetMapping(value = "/" + UUID_PARAMETER, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse<Serializable>> doOnGetCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid) {
+        try {
+            CandidateDto candidate = mapper.toDto(service.getCandidate(uuid));
+            return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK, candidate), HttpStatus.OK);
+        } catch (CandidateNotFoundException e) {
+            return new ResponseEntity<>(
+                    BaseResponse.buildResponse(ResponseCode.NOT_FOUND, Error.builder().message(e.getMessage()).build())
+                    , HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
-    @PostMapping(value = "/", produces = "application/json; charset=UTF-8")
-    public ResponseEntity<BaseResponse<CandidateDto>> doOnCreateCandidate(@RequestBody CandidateDto candidate) {
-        return null;
+    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse<Serializable>> doOnCreateCandidate(@RequestBody CandidateDto candidate) {
+        try {
+            candidate = mapper.toDto(service.createCandidate(mapper.toDomain(candidate)));
+            return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK_CREATED, candidate), HttpStatus.CREATED);
+        } catch (CandidateExistException e) {
+            return new ResponseEntity<>(
+                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST, Error.builder().message(e.getMessage()).build())
+                    , HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    @PutMapping(value = "/" + UUID_PARAMETER, produces = "application/json; charset=UTF-8")
-    public ResponseEntity<BaseResponse<CandidateDto>> doOnUpdateCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid
+    @PutMapping(value = "/" + UUID_PARAMETER, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse<Serializable>> doOnUpdateCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid
             , @RequestBody CandidateDto candidate) {
-        return null;
+        try {
+            candidate = mapper.toDto(service.updateCandidate(mapper.toDomain(candidate)));
+            return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK, candidate), HttpStatus.OK);
+        } catch (CandidateNotFoundException e) {
+            return new ResponseEntity<>(
+                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST, Error.builder().message(e.getMessage()).build())
+                    , HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    @DeleteMapping(value = "/" + UUID_PARAMETER, produces = "application/json; charset=UTF-8")
-    public ResponseEntity<Void> doOnDeleteCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid) {
-        return null;
+    @DeleteMapping(value = "/" + UUID_PARAMETER, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponse<Serializable>> doOnDeleteCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid) {
+        try {
+            service.deleteCandidate(uuid);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (CandidateNotFoundException e) {
+            return new ResponseEntity<>(
+                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST, Error.builder().message(e.getMessage()).build())
+                    , HttpStatus.BAD_REQUEST);
+        }
     }
 }

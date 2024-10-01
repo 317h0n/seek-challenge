@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.http.ResponseEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -37,21 +38,21 @@ public interface ICandidateController {
     @Operation(summary = "Get Candidate", description = "Retrieve a specific candidate by uuid")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse<CandidateDto>> doOnGetCandidate(
+    ResponseEntity<BaseResponse<Serializable>> doOnGetCandidate(
             @Parameter(name = "uuid", description = "Candidate's uuid", required = true)
             String uuid);
 
     @Operation(summary = "Create a Candidate", description = "Create a new candidate")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse<CandidateDto>> doOnCreateCandidate(
+    ResponseEntity<BaseResponse<Serializable>> doOnCreateCandidate(
             @Parameter(name = "candidate", description = "Candidate's information", required = true)
             CandidateDto candidate);
 
     @Operation(summary = "Update a Candidate", description = "Update a candidate's information")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<BaseResponse<CandidateDto>> doOnUpdateCandidate(
+    ResponseEntity<BaseResponse<Serializable>> doOnUpdateCandidate(
             @Parameter(name = "uuid", description = "Candidate's uuid", required = true)
             String uuid,
             @Parameter(name = "candidate", description = "Candidate's information", required = true)
@@ -60,7 +61,7 @@ public interface ICandidateController {
     @Operation(summary = "Delete Candidate", description = "Delete a specific candidate by uuid")
     @ApiResponse(
             code = 0, message = "")
-    ResponseEntity<Void> doOnDeleteCandidate(
+    ResponseEntity<BaseResponse<Serializable>> doOnDeleteCandidate(
             @Parameter(name = "uuid", description = "Candidate's uuid", required = true)
             String uuid);
 }

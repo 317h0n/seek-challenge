@@ -14,10 +14,11 @@ import java.util.List;
  */
 
 public interface ICandidateService {
-    Candidate getCandidate(Long id);
-    Candidate getCandidate(String uuid);
+
     List<Candidate> getCandidates();
+    Candidate getCandidate(String uuid);
     Candidate createCandidate(Candidate candidate);
     Candidate updateCandidate(Candidate candidate);
     void deleteCandidate(String uuid);
+
 }

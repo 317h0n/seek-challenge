@@ -9,31 +9,26 @@ import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
- * CandidateDto
+ * Error
  * <p>
- * CandidateDto class.
+ * Error class.
  * <p>
  * @author echocano
  * @since 10/1/24
  */
 
-@Builder
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CandidateDto implements Serializable {
+public class Error implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 7695542688561403922L;
+    private static final long serialVersionUID = -1858870333245605317L;
 
-    private String uuid;
-    private String name;
-    private String email;
-    private String gender;
-    private BigDecimal expectedSalary;
+    private String message;
 }

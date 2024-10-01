@@ -1,6 +1,7 @@
 package com.echocano.seek.challenge.infrastructure.spring.rest.dto;
 
 import com.echocano.seek.challenge.application.helpers.DateHelper;
+import com.echocano.seek.challenge.infrastructure.spring.rest.resources.enums.ResponseCode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,4 +40,13 @@ public class BaseResponse<T> implements Serializable {
 
     @Schema(name = "data", description = "Response data")
     private T data;
+
+    public static <T extends Serializable> BaseResponse<T> buildResponse(ResponseCode code, T data) {
+        BaseResponse<T> response = new BaseResponse<>();
+        response.setCode(code.getCode());
+        response.setMessage(code.getMessage());
+        response.setDatetime(DateHelper.getStringUTCNow());
+        response.setData(data);
+        return response;
+    }
 }

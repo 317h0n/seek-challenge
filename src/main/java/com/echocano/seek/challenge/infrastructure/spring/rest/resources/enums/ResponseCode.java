@@ -1,4 +1,4 @@
-package com.echocano.seek.challenge.infrastructure.spring.rest.resources;
+package com.echocano.seek.challenge.infrastructure.spring.rest.resources.enums;
 
 import lombok.Getter;
 
@@ -15,7 +15,8 @@ import lombok.Getter;
 public enum ResponseCode {
     OK("200.00.00", "Process ok"),
     OK_CREATED("200.00.01", "Resource successfully created"),
-    NOT_FOUND("400.00.01", "Resource not found");
+    NOT_FOUND("400.00.01", "Resource not found"),
+    BAD_REQUEST("400.00.02", "Bad request");
 
     private final String code;
     private final String message;
