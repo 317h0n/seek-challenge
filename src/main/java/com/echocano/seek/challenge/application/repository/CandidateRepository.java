@@ -14,9 +14,10 @@ import java.util.List;
  */
 
 public interface CandidateRepository {
-    Candidate findById(Integer id);
+    Candidate findById(Long id);
     Candidate findByUuid(String uuid);
     Candidate findByEmail(String email);
     List<Candidate> findAll();
     Candidate save(Candidate candidate);
+    void delete(Candidate candidate);
 }
