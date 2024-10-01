@@ -49,7 +49,7 @@ public class CandidateController implements ICandidateController {
     private final ICandidateDtoMapper mapper;
 
     @Override
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = {"", "/"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<List<CandidateDto>>> doOnGetCandidates() {
         List<CandidateDto> candidates = mapper.toDto(service.getCandidates());
         BaseResponse<List<CandidateDto>> response = new BaseResponse<>();
@@ -73,7 +73,7 @@ public class CandidateController implements ICandidateController {
     }
 
     @Override
-    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = {"", "/"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<Serializable>> doOnCreateCandidate(@RequestBody CandidateDto candidate) {
         try {
             candidate = mapper.toDto(service.createCandidate(mapper.toDomain(candidate)));

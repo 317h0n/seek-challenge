@@ -3,11 +3,13 @@ package com.echocano.seek.challenge.application.service.implementation;
 import com.echocano.seek.challenge.application.repository.CandidateRepository;
 import com.echocano.seek.challenge.application.service.ICandidateService;
 import com.echocano.seek.challenge.domain.Candidate;
+import com.echocano.seek.challenge.domain.exceptions.CandidateExistException;
 import com.echocano.seek.challenge.domain.exceptions.CandidateNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * CandidateService
@@ -41,8 +43,9 @@ public class CandidateService implements ICandidateService {
     @Override
     public Candidate createCandidate(Candidate candidate) {
         if(repository.findByEmail(candidate.getEmail()) != null) {
-            throw new CandidateNotFoundException(candidate.getEmail());
+            throw new CandidateExistException(candidate.getEmail());
         }
+        candidate.setUuid(UUID.randomUUID().toString());
         return repository.save(candidate);
     }
 
