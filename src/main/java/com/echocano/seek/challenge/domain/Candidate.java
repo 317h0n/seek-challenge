@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -25,7 +26,9 @@ import java.math.BigDecimal;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Candidate {
+public class Candidate implements Serializable {
+
+    private static final long serialVersionUID = 8338004597506036764L;
 
     private Long id;
     private String uuid;
