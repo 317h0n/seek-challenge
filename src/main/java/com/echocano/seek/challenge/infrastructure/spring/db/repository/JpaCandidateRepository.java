@@ -1,6 +1,6 @@
-package com.echocano.seek.challenge.infrastructure.db.repository;
+package com.echocano.seek.challenge.infrastructure.spring.db.repository;
 
-import com.echocano.seek.challenge.infrastructure.db.dbo.CandidateEntity;
+import com.echocano.seek.challenge.infrastructure.spring.db.dbo.CandidateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

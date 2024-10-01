@@ -1,4 +1,4 @@
-package com.echocano.seek.challenge.infrastructure.db.dbo;
+package com.echocano.seek.challenge.infrastructure.spring.db.dbo;
 
 import com.echocano.seek.challenge.domain.Gender;
 import jakarta.persistence.Column;

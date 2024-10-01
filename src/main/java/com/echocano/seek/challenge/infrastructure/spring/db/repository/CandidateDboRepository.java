@@ -1,8 +1,8 @@
-package com.echocano.seek.challenge.infrastructure.db.repository;
+package com.echocano.seek.challenge.infrastructure.spring.db.repository;
 
 import com.echocano.seek.challenge.application.repository.CandidateRepository;
 import com.echocano.seek.challenge.domain.Candidate;
-import com.echocano.seek.challenge.infrastructure.db.mapper.ICandidateEntityMapper;
+import com.echocano.seek.challenge.infrastructure.spring.db.mapper.ICandidateEntityMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
