@@ -27,6 +27,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class Candidate {
 
+    private Long id;
+    private String uuid;
     private String name;
     private String email;
     private Gender gender;
