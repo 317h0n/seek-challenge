@@ -18,7 +18,10 @@
         <license/>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <email>elthonchocano@gamil.com</email>
+            <name>Elthon Chocano</name>
+        </developer>
     </developers>
     <scm>
         <connection/>
