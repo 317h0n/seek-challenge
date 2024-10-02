@@ -34,7 +34,7 @@
         <dependency-lombok-version>1.18.30</dependency-lombok-version>
         <dependency-mapstruct-version>1.5.3.Final</dependency-mapstruct-version>
         <dependency-log4j-api-version>2.19.0</dependency-log4j-api-version>
-        <dependency-io-springfox-version>3.0.0</dependency-io-springfox-version>
+        <dependency-io-springfox-version>2.0.2</dependency-io-springfox-version>
     </properties>
     <build>
         <plugins>
@@ -118,23 +118,8 @@
         </dependency>
         <!-- swagger dependency -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${dependency-io-springfox-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-spring-web</artifactId>
-            <version>${dependency-io-springfox-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-spring-webmvc</artifactId>
-            <version>${dependency-io-springfox-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${dependency-io-springfox-version}</version>
         </dependency>
         <!-- flyway dependency -->

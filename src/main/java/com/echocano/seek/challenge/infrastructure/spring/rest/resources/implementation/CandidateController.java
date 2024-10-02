@@ -5,7 +5,7 @@ import com.echocano.seek.challenge.domain.exceptions.CandidateExistException;
 import com.echocano.seek.challenge.domain.exceptions.CandidateNotFoundException;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.BaseResponse;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.CandidateDto;
-import com.echocano.seek.challenge.infrastructure.spring.rest.dto.Error;
+import com.echocano.seek.challenge.infrastructure.spring.rest.dto.ErrorResponse;
 import com.echocano.seek.challenge.infrastructure.spring.rest.mapper.ICandidateDtoMapper;
 import com.echocano.seek.challenge.infrastructure.spring.rest.resources.ICandidateController;
 import com.echocano.seek.challenge.infrastructure.spring.rest.resources.enums.ResponseCode;
@@ -49,7 +49,7 @@ public class CandidateController implements ICandidateController {
     private final ICandidateDtoMapper mapper;
 
     @Override
-    @GetMapping(value = {"", "/"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = {"/"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<List<CandidateDto>>> doOnGetCandidates() {
         List<CandidateDto> candidates = mapper.toDto(service.getCandidates());
         BaseResponse<List<CandidateDto>> response = new BaseResponse<>();
@@ -66,21 +66,25 @@ public class CandidateController implements ICandidateController {
             CandidateDto candidate = mapper.toDto(service.getCandidate(uuid));
             return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK, candidate), HttpStatus.OK);
         } catch (CandidateNotFoundException e) {
+            ErrorResponse errorResponse = ErrorResponse.builder().build();
+            errorResponse.addErrorMessage(e.getMessage());
             return new ResponseEntity<>(
-                    BaseResponse.buildResponse(ResponseCode.NOT_FOUND, Error.builder().message(e.getMessage()).build())
-                    , HttpStatus.NOT_FOUND);
+                    BaseResponse.buildResponse(ResponseCode.NOT_FOUND, errorResponse)
+                    , HttpStatus.BAD_REQUEST);
         }
     }
 
     @Override
-    @PostMapping(value = {"", "/"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = {"/"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<Serializable>> doOnCreateCandidate(@RequestBody CandidateDto candidate) {
         try {
             candidate = mapper.toDto(service.createCandidate(mapper.toDomain(candidate)));
             return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK_CREATED, candidate), HttpStatus.CREATED);
         } catch (CandidateExistException e) {
+            ErrorResponse errorResponse = ErrorResponse.builder().build();
+            errorResponse.addErrorMessage(e.getMessage());
             return new ResponseEntity<>(
-                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST, Error.builder().message(e.getMessage()).build())
+                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST_EMAIL_ALREADY_EXISTS, errorResponse)
                     , HttpStatus.BAD_REQUEST);
         }
     }
@@ -93,8 +97,10 @@ public class CandidateController implements ICandidateController {
             candidate = mapper.toDto(service.updateCandidate(mapper.toDomain(candidate)));
             return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK, candidate), HttpStatus.OK);
         } catch (CandidateNotFoundException e) {
+            ErrorResponse errorResponse = ErrorResponse.builder().build();
+            errorResponse.addErrorMessage(e.getMessage());
             return new ResponseEntity<>(
-                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST, Error.builder().message(e.getMessage()).build())
+                    BaseResponse.buildResponse(ResponseCode.NOT_FOUND, errorResponse)
                     , HttpStatus.BAD_REQUEST);
         }
     }
@@ -106,8 +112,10 @@ public class CandidateController implements ICandidateController {
             service.deleteCandidate(uuid);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (CandidateNotFoundException e) {
+            ErrorResponse errorResponse = ErrorResponse.builder().build();
+            errorResponse.addErrorMessage(e.getMessage());
             return new ResponseEntity<>(
-                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST, Error.builder().message(e.getMessage()).build())
+                    BaseResponse.buildResponse(ResponseCode.NOT_FOUND, errorResponse)
                     , HttpStatus.BAD_REQUEST);
         }
     }
