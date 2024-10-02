@@ -16,3 +16,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem

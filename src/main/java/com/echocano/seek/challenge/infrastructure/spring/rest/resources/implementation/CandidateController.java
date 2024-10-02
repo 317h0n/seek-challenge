@@ -15,6 +15,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +51,7 @@ public class CandidateController implements ICandidateController {
     private final ICandidateDtoMapper mapper;
 
     @Override
+    @PreAuthorize("hasAuthority('SCOPE_read')")
     @GetMapping(value = {"/"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<List<CandidateDto>>> doOnGetCandidates() {
         List<CandidateDto> candidates = mapper.toDto(service.getCandidates());
@@ -61,6 +63,7 @@ public class CandidateController implements ICandidateController {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('SCOPE_read')")
     @GetMapping(value = "/" + UUID_PARAMETER, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<Serializable>> doOnGetCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid) {
         try {
@@ -76,6 +79,7 @@ public class CandidateController implements ICandidateController {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('SCOPE_write')")
     @PostMapping(value = {"/"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<Serializable>> doOnCreateCandidate(@RequestBody CandidateDto candidate) {
         try {
@@ -97,6 +101,7 @@ public class CandidateController implements ICandidateController {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('SCOPE_write')")
     @PutMapping(value = "/" + UUID_PARAMETER, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<Serializable>> doOnUpdateCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid
             , @RequestBody CandidateDto candidate) {
@@ -119,6 +124,7 @@ public class CandidateController implements ICandidateController {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('SCOPE_write')")
     @DeleteMapping(value = "/" + UUID_PARAMETER, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponse<Serializable>> doOnDeleteCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid) {
         try {
