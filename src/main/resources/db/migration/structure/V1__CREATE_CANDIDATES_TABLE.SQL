@@ -1,0 +1,8 @@
+CREATE TABLE candidates (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    uuid CHAR(36) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    gender CHAR(1) NOT NULL,
+    expected_salary DECIMAL(15, 2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

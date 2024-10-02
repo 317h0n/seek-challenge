@@ -8,9 +8,9 @@ package com.echocano.seek.challenge.domain.exceptions;
  * @author echocano
  * @since 10/1/24
  */
-public class CandidateExistException extends RuntimeException {
+public class CandidateExistsException extends RuntimeException {
 
-    public CandidateExistException(String email) {
+    public CandidateExistsException(String email) {
         super(String.format("There is a candidate with EMAIL %s", email));
     }
 }

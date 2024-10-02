@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -25,8 +26,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(name = "BaseResponse", description = "Base resource payload")
 public class BaseResponse<T> implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -3295335366828440909L;
 
     @Schema(name = "code", description = "Response code", example = "200.00.000")
@@ -35,11 +38,11 @@ public class BaseResponse<T> implements Serializable {
     @Schema(name = "datetime", description = "Response datetime", example = "2024-02-01T02:31:33.666Z")
     private String datetime = DateHelper.getStringUTCNow();
 
-    @Schema(name = "message", description = "Response message", example = "Process Ok")
+    @Schema(name = "message", description = "Response message", example = "Process ok.")
     private String message;
 
     @Schema(name = "data", description = "Response data")
-    private T data;
+    private transient T data;
 
     public static <T extends Serializable> BaseResponse<T> buildResponse(ResponseCode code, T data) {
         BaseResponse<T> response = new BaseResponse<>();
