@@ -13,7 +13,6 @@ import java.util.TimeZone;
  * DateHelper class.
  * <p>
  *
- * @author Novopayment Inc.
  * @author echocano
  * @since 10/1/24
  */

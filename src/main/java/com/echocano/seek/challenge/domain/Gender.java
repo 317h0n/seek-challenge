@@ -21,7 +21,7 @@ public enum Gender {
     private final String code;
     private final String description;
 
-    private Gender(String code, String description) {
+    Gender(String code, String description) {
         this.code = code;
         this.description = description;
     }
@@ -30,6 +30,6 @@ public enum Gender {
         return Stream.of(Gender.values())
                 .filter(g -> g.code.equals(code))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElse(null);
     }
 }

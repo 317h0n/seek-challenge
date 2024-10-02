@@ -1,8 +1,9 @@
 package com.echocano.seek.challenge.infrastructure.spring.rest.resources.implementation;
 
 import com.echocano.seek.challenge.application.service.ICandidateService;
-import com.echocano.seek.challenge.domain.exceptions.CandidateExistException;
+import com.echocano.seek.challenge.domain.exceptions.CandidateExistsException;
 import com.echocano.seek.challenge.domain.exceptions.CandidateNotFoundException;
+import com.echocano.seek.challenge.domain.exceptions.CandidateParamsException;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.BaseResponse;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.CandidateDto;
 import com.echocano.seek.challenge.infrastructure.spring.rest.dto.ErrorResponse;
@@ -80,11 +81,17 @@ public class CandidateController implements ICandidateController {
         try {
             candidate = mapper.toDto(service.createCandidate(mapper.toDomain(candidate)));
             return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK_CREATED, candidate), HttpStatus.CREATED);
-        } catch (CandidateExistException e) {
+        } catch (CandidateExistsException e) {
             ErrorResponse errorResponse = ErrorResponse.builder().build();
             errorResponse.addErrorMessage(e.getMessage());
             return new ResponseEntity<>(
                     BaseResponse.buildResponse(ResponseCode.BAD_REQUEST_EMAIL_ALREADY_EXISTS, errorResponse)
+                    , HttpStatus.BAD_REQUEST);
+        } catch (CandidateParamsException e) {
+            ErrorResponse errorResponse = ErrorResponse.builder().build();
+            errorResponse.setErrors(e.getErrors());
+            return new ResponseEntity<>(
+                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST_MALFORMED_PARAMETERS, errorResponse)
                     , HttpStatus.BAD_REQUEST);
         }
     }
@@ -94,13 +101,19 @@ public class CandidateController implements ICandidateController {
     public ResponseEntity<BaseResponse<Serializable>> doOnUpdateCandidate(@PathVariable(UUID_PATH_VARIABLE) String uuid
             , @RequestBody CandidateDto candidate) {
         try {
-            candidate = mapper.toDto(service.updateCandidate(mapper.toDomain(candidate)));
+            candidate = mapper.toDto(service.updateCandidate(uuid, mapper.toDomain(candidate)));
             return new ResponseEntity<>(BaseResponse.buildResponse(ResponseCode.OK, candidate), HttpStatus.OK);
         } catch (CandidateNotFoundException e) {
             ErrorResponse errorResponse = ErrorResponse.builder().build();
             errorResponse.addErrorMessage(e.getMessage());
             return new ResponseEntity<>(
                     BaseResponse.buildResponse(ResponseCode.NOT_FOUND, errorResponse)
+                    , HttpStatus.BAD_REQUEST);
+        } catch (CandidateParamsException e) {
+            ErrorResponse errorResponse = ErrorResponse.builder().build();
+            errorResponse.setErrors(e.getErrors());
+            return new ResponseEntity<>(
+                    BaseResponse.buildResponse(ResponseCode.BAD_REQUEST_MALFORMED_PARAMETERS, errorResponse)
                     , HttpStatus.BAD_REQUEST);
         }
     }

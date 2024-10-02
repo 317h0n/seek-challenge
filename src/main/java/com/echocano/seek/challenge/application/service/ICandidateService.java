@@ -18,7 +18,7 @@ public interface ICandidateService {
     List<Candidate> getCandidates();
     Candidate getCandidate(String uuid);
     Candidate createCandidate(Candidate candidate);
-    Candidate updateCandidate(Candidate candidate);
+    Candidate updateCandidate(String uuid, Candidate candidate);
     void deleteCandidate(String uuid);
 
 }
