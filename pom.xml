@@ -129,6 +129,15 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${dependency-io-springfox-version}</version>
         </dependency>
+        <!-- flyway dependency -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
         <!--Test dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -6,6 +6,11 @@ spring:
     username: ${MYSQL_USERNAME:candidate-user}
     password: ${MYSQL_PASSWORD:uno-muy-dificil}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway: #flyway automatically uses the datasource from the application to connect to the DB
+    enabled: true # enables flyway database migration
+    locations: classpath:db/migration/structure, classpath:db/migration/data # the location where flyway should look for migration scripts
+    validate-on-migrate: true
+    default-schema: candidates_db
   jpa:
     show-sql: true
     properties:
