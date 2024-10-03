@@ -3,8 +3,9 @@ package com.echocano.seek.challenge.infrastructure.spring.oauth.service;
 /**
  * TokenService
  * <p>
- * TokenService class.
+ * TokenService class from <a href="https://github.com/danvega/jwt/blob/master/src/main/java/dev/danvega/jwt/Application.java">this link</a>
  * <p>
+ * @author danvega
  * @author echocano
  * @since 10/2/24
  */

@@ -14,8 +14,9 @@ import java.time.Instant;
 /**
  * Token
  * <p>
- * Token class.
+ * Token class from <a href="https://github.com/danvega/jwt/blob/master/src/main/java/dev/danvega/jwt/Application.java">this link</a>
  * <p>
+ * @author danvega
  * @author echocano
  * @since 10/2/24
  */

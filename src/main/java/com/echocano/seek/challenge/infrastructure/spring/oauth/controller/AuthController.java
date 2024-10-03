@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * AuthController
  * <p>
- * AuthController class.
+ * AuthController class from <a href="https://github.com/danvega/jwt/blob/master/src/main/java/dev/danvega/jwt/Application.java">this link</a>
  * <p>
- * @author echocano
+ * @author danvega
  * @author echocano
  * @since 10/2/24
  */
