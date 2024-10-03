@@ -1,6 +1,6 @@
 package com.echocano.seek.challenge.application.service.implementation;
 
-import com.echocano.seek.challenge.application.repository.CandidateRepository;
+import com.echocano.seek.challenge.application.repository.ICandidateRepository;
 import com.echocano.seek.challenge.domain.Candidate;
 import com.echocano.seek.challenge.domain.Gender;
 import com.echocano.seek.challenge.domain.exceptions.CandidateExistsException;
@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CandidateServiceTest {
 
     @Mock
-    private CandidateRepository repository;
+    private ICandidateRepository repository;
 
     @InjectMocks
     private CandidateService service;
