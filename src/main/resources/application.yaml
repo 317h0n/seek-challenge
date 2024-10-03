@@ -10,7 +10,8 @@ spring:
     enabled: true # enables flyway database migration
     locations: classpath:db/migration/structure, classpath:db/migration/data # the location where flyway should look for migration scripts
     validate-on-migrate: true
-    default-schema: ${MYSQL_SCHEME:candidates_db}
+    default-schema: ${MYSQL_SCHEME}
+    baseline-on-migrate: true
   jpa:
     show-sql: false
     properties:
