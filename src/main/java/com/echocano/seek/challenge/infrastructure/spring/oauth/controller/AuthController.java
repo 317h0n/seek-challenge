@@ -2,6 +2,7 @@ package com.echocano.seek.challenge.infrastructure.spring.oauth.controller;
 
 import com.echocano.seek.challenge.infrastructure.spring.oauth.dtos.TokenDto;
 import com.echocano.seek.challenge.infrastructure.spring.oauth.service.TokenService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Log4j2
 @RequiredArgsConstructor
 @RestController
+@SecurityRequirement(name = "BasicAuthorization")
 public class AuthController {
 
     private final TokenService tokenService;
