@@ -1,9 +1,11 @@
 package com.echocano.seek.challenge;
 
+import com.echocano.seek.challenge.infrastructure.spring.oauth.config.RsaKeyProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
+@EnableConfigurationProperties(RsaKeyProperties.class)
 @SpringBootApplication
 public class SeekChallengeApplication {
 
