@@ -1,0 +1,51 @@
+{
+	"id": "ac35910e-e9c6-4ff1-8c10-2b0ab493136f",
+	"name": "heroku",
+	"values": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "new-candidate-uuid",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "server",
+			"value": "https://echocano-seek-challenge-30e009b05e43.herokuapp.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "read-user",
+			"value": "read-user",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "write-user",
+			"value": "write-user",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "read-password",
+			"value": "password1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "write-password",
+			"value": "password2",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-10-03T09:10:35.583Z",
+	"_postman_exported_using": "Postman/10.24.27"
+}
