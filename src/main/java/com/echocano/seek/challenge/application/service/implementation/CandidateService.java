@@ -2,7 +2,7 @@ package com.echocano.seek.challenge.application.service.implementation;
 
 import com.echocano.seek.challenge.application.dtos.ValidationResult;
 import com.echocano.seek.challenge.application.enums.ProcessResult;
-import com.echocano.seek.challenge.application.repository.CandidateRepository;
+import com.echocano.seek.challenge.application.repository.ICandidateRepository;
 import com.echocano.seek.challenge.application.service.ICandidateService;
 import com.echocano.seek.challenge.application.validations.ICandidateValidation;
 import com.echocano.seek.challenge.domain.Candidate;
@@ -28,7 +28,7 @@ import java.util.UUID;
 @Service
 public class CandidateService implements ICandidateService {
 
-    private final CandidateRepository repository;
+    private final ICandidateRepository repository;
 
     @Override
     public Candidate getCandidate(String uuid) {

@@ -1,6 +1,6 @@
 package com.echocano.seek.challenge.infrastructure.spring.db.repository;
 
-import com.echocano.seek.challenge.application.repository.CandidateRepository;
+import com.echocano.seek.challenge.application.repository.ICandidateRepository;
 import com.echocano.seek.challenge.domain.Candidate;
 import com.echocano.seek.challenge.infrastructure.spring.db.mapper.ICandidateEntityMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 @Repository
-public class CandidateDboRepository implements CandidateRepository {
+public class CandidateDboRepository implements ICandidateRepository {
 
     private final JpaCandidateRepository repository;
     private final ICandidateEntityMapper mapper;
