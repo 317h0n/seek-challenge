@@ -1,5 +1,1 @@
 INSERT INTO candidates (uuid,name,email,gender,expected_salary) VALUES ('b0c8b56e-604f-4d11-8780-ae884735d148','Elthon Chocano','elthonchocano@gmail.com','M',2500.00);
-INSERT INTO candidates (uuid,name,email,gender,expected_salary) VALUES ('7867f334-91b7-4357-8ca2-7fbc50e1b04c','Claudio Pizarro','claudiopizarro@gmail.com','M',250000.00);
-INSERT INTO candidates (uuid,name,email,gender,expected_salary) VALUES ('fbdb3580-1b62-4298-bfca-294cc215721d','Paolo Guerrero','paologuerrero@gmail.com','M',200000.00);
-INSERT INTO candidates (uuid,name,email,gender,expected_salary) VALUES ('1ba40eb6-94b2-451f-9400-0bfbf302c93f','Juan Vargas','juanvargas@gmail.com','M',150000.00);
-INSERT INTO candidates (uuid,name,email,gender,expected_salary) VALUES ('cf203bda-7d8a-4d57-9c19-f131e97cb8c6','Christian Cueva','christiancueva@gmail.com','M',80000.00);
