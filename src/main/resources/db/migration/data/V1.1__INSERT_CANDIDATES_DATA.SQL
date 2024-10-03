@@ -1,4 +1,4 @@
-INSERT INTO candidates_db.candidates (uuid,name,email,gender,expected_salary) VALUES
+INSERT INTO candidates (uuid,name,email,gender,expected_salary) VALUES
     ('b0c8b56e-604f-4d11-8780-ae884735d148','Elthon Chocano','elthonchocano@gmail.com','M',2500.00),
     ('7867f334-91b7-4357-8ca2-7fbc50e1b04c','Claudio Pizarro','claudiopizarro@gmail.com','M',250000.00),
     ('fbdb3580-1b62-4298-bfca-294cc215721d','Paolo Guerrero','paologuerrero@gmail.com','M',200000.00),
