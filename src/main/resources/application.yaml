@@ -2,7 +2,7 @@ spring:
   application:
     name: seek-challenge
   datasource:
-    url: jdbc:mysql://localhost:3306/candidates_db?allowPublicKeyRetrieval=true&useSSL=false
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/candidates_db?allowPublicKeyRetrieval=true&useSSL=false}
     username: ${MYSQL_USERNAME:candidate-user}
     password: ${MYSQL_PASSWORD:uno-muy-dificil}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -10,7 +10,7 @@ spring:
     enabled: true # enables flyway database migration
     locations: classpath:db/migration/structure, classpath:db/migration/data # the location where flyway should look for migration scripts
     validate-on-migrate: true
-    default-schema: candidates_db
+    default-schema: ${MYSQL_SCHEME:candidates_db}
   jpa:
     show-sql: false
     properties:
