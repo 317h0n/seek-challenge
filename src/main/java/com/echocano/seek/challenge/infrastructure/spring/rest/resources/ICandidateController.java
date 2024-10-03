@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 
@@ -24,6 +25,7 @@ import java.util.List;
  */
 
 @Tag(name = "Candidates", description = "Candidates Api")
+@SecurityRequirement(name = "Authorization")
 public interface ICandidateController {
 
     String JSON_RESPONSE_MALFORMED_PARAMETERS = """
@@ -106,7 +108,8 @@ public interface ICandidateController {
 
     @Operation(summary = "Get All Candidates", description = "Retrieve all registered candidates")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json"
+            @ApiResponse(responseCode = "200"
+                    , content = @Content(mediaType = "application/json"
                     , examples = {
                         @ExampleObject(name = "Success response",
                             description = "Retrieve a list of Candidates.",
@@ -116,7 +119,8 @@ public interface ICandidateController {
 
     @Operation(summary = "Get Candidate", description = "Retrieve a specific candidate by uuid")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json"
+            @ApiResponse(responseCode = "200"
+                    , content = @Content(mediaType = "application/json"
                     , examples = {
                     @ExampleObject(name = "Success response",
                             description = "Retrieve a Candidate.",
