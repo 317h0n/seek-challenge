@@ -13,7 +13,7 @@ import java.util.List;
  * @since 10/1/24
  */
 
-public interface CandidateRepository {
+public interface ICandidateRepository {
     Candidate findById(Long id);
     Candidate findByUuid(String uuid);
     Candidate findByEmail(String email);
